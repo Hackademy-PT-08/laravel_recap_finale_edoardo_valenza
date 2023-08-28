@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 
 /*
@@ -49,3 +50,24 @@ Route::delete('/progetti/elimina/{id}', [ProjectController::class, 'destroy'])
 Route::get('/progetti/{id}', [ProjectController::class, 'show'])
 ->middleware(['auth', 'verified'])
 ->name('projects.show');
+
+//Pagina di gestione utenti
+Route::get('/utenti', [UserController::class, 'index'])
+->middleware(['auth', 'verified'])
+->name('users.index');
+
+Route::get('/utenti/profilo', [UserController::class, 'profile'])
+->middleware(['auth', 'verified'])
+->name('users.profile');
+
+Route::get('/utenti/modifica/{id}', [UserController::class, 'edit'])
+->middleware(['auth', 'verified'])
+->name('users.edit');
+
+Route::put('/utenti/modifica/{id}', [UserController::class, 'update'])
+->middleware(['auth', 'verified'])
+->name('users.update');
+
+Route::delete('/utenti/elimina/{id}', [UserController::class, 'destroy'])
+->middleware(['auth', 'verified'])
+->name('users.destroy');

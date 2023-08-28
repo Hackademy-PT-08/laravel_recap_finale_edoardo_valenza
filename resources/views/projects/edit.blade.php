@@ -2,34 +2,80 @@
 
     <h1>Modifica progetto</h1>
 
-    <form action="{{route('projects.update', $article->id)}}" method="post" enctype="multipart/form-data">
-    
-        @csrf
+    <br>
 
-        <label for="titolo">Titolo</label>
+    <div class="container">
 
-        <input type="text" name="titolo" id="titolo">
+        <div class="row">
 
-        <label for="status">Status</label>
+            <div class="col-xs-12">
 
-        <select name="status" id="status">
+                <form action="{{route('projects.update', $project->id)}}" method="post" enctype="multipart/form-data">
+            
+                    @csrf
 
-            <option value="Preventivato">Preventivo</option>
+                    @method('PUT')
 
-            <option value="In corso">In corso</option>
+                    <label for="titolo">Titolo</label>
 
-            <option value="Completato">Completato</option>
+                    <input type="text" name="titolo" id="titolo" class="form-control" value="{{$project->title}}">
 
-        </select>
+                    <br>
 
-        <label for="immagine">Immagine</label>
+                    <label for="status">Status</label>
 
-        <input type="file" name="immagine" id="immagine">
+                    <select name="status" id="status" class="form-control">
 
-        <label for="utenti">Utenti</label>
+                        <option value="Preventivato" {{ ( $project->status == 'Preventivato' ? 'selected' : '' ) }}>Preventivo</option>
 
-        <input type="submit" value="Modifica">
+                        <option value="In corso" {{ ( $project->status == 'In corso' ? 'selected' : '' ) }}>In corso</option>
 
-    </form>
+                        <option value="Completato" {{ ( $project->status == 'Completato' ? 'selected' : '' ) }}>Completato</option>
+
+                    </select>
+
+                    <br>
+
+                    <label for="immagine">Immagine</label>
+
+                    <input type="file" name="immagine" id="immagine" class="form-control">
+
+                    <br>
+
+                    <label for="categorie">Categorie</label>
+
+                    <select name="categorie[]" id="categorie" class="form-control" multiple>
+
+                        <option value="1">Web app</option>
+
+                        <option value="2">Siti web</option>
+
+                        <option value="3">Ecommerce</option>
+
+                    </select>
+
+                    <br>
+
+                    <label for="utenti">Utenti</label>
+
+                    <select name="utenti[]" id="utenti" class="form-control" multiple>
+
+                        @foreach ($users as $user)
+                            <option value="{{$user->id}}" {{ ( $project->user->id == $user->id ? 'selected' : '' ) }}>{{$user->name}}</option>
+                        @endforeach
+
+                    </select>
+
+                    <br>
+
+                    <input type="submit" value="Modifica" class="btn btn-primary">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>   
 
 </x-layout>

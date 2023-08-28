@@ -1,19 +1,41 @@
 <x-layout>
 
-    <form action="/login" method="post">
+    <h1>Accedi con i tuoi dati</h1>
+
+    <br>
+
+    <x-form-errors />
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-xs-12">
+
+                <form action="/login" method="post">
     
-        @csrf
+                    @csrf
+            
+                    <label for="email">Email</label>
+            
+                    <input type="email" name="email" id="email" class="form-control">
 
-        <label for="email">Email</label>
+                    <br>
+            
+                    <label for="password">Password</label>
+            
+                    <input type="password" name="password" id="password" class="form-control">
 
-        <input type="email" name="email" id="email">
+                    <br>
+            
+                    <input type="submit" value="Accedi" class="btn btn-primary">
+            
+                </form>
 
-        <label for="password">Password</label>
+            </div>
 
-        <input type="password" name="password" id="password">
+        </div>
 
-        <input type="submit" value="Accedi">
-
-    </form>
+    </div>
 
 </x-layout>

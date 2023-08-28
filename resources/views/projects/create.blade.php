@@ -4,6 +4,8 @@
 
     <br>
 
+    <x-form-errors />
+
     <div class="container">
 
         <div class="row">
@@ -40,9 +42,23 @@
 
                     <br>
 
+                    <label for="categorie">Categorie</label>
+
+                    <select name="categorie[]" id="categorie" class="form-control" multiple>
+
+                        <option value="1">Web app</option>
+
+                        <option value="2">Siti web</option>
+
+                        <option value="3">Ecommerce</option>
+
+                    </select>
+
+                    <br>
+
                     <label for="utenti">Utenti</label>
 
-                    <select name="utenti" id="utenti" class="form-control">
+                    <select name="utenti[]" id="utenti" class="form-control" multiple>
 
                         @foreach ($users as $user)
                             <option value="{{$user->id}}">{{$user->name}}</option>
@@ -52,7 +68,7 @@
 
                     <br>
 
-                    <input type="submit" value="Aggiungi">
+                    <input type="submit" value="Aggiungi" class="btn btn-primary">
 
                 </form>
 

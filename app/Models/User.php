@@ -42,4 +42,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function projects () {
+
+        return $this->belongsToMany(Project::class);
+
+    }
+
+    public function roles () {
+
+        return $this->belongsToMany(Role::class);
+
+    }
 }
